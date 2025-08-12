@@ -1,0 +1,78 @@
+############################
+# OS-specific files
+############################
+.DS_Store
+Thumbs.db
+
+############################
+# Maven / Gradle build output
+############################
+target/
+build/
+out/
+
+############################
+# Logs
+############################
+*.log
+logs/
+*.out
+
+############################
+# Dependency directories
+############################
+node_modules/
+npm-debug.log*
+
+############################
+# IntelliJ IDEA
+############################
+.idea/
+*.iml
+*.iws
+*.ipr
+
+############################
+# Eclipse
+############################
+.project
+.classpath
+.settings/
+.apt_generated/
+.springBeans
+.factorypath
+
+############################
+# VS Code
+############################
+.vscode/
+
+############################
+# Spring Boot specific
+############################
+# Exclude application secrets
+**/application-*.yml
+**/application-*.properties
+**/application.properties
+
+# Exclude temporary files
+*.tmp
+*.swp
+
+############################
+# Environment files
+############################
+.env
+.env.*
+
+############################
+# Generated files
+############################
+*.jar
+*.war
+*.ear
+
+############################
+# Mac-specific metadata
+############################
+._*
