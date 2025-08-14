@@ -45,7 +45,7 @@ public class AuthService {
             this.roleRepo = roleRepo;
     }
 
-    public String registerUser(@Valid AuthRequest user){
+    public String registerUser( AuthRequest user){
         if(usersRepo.existsByEmail(user.getEmail())) {
             throw new RuntimeException("User already exist");
         }

@@ -4,11 +4,13 @@ import com.citadel.productservice.DTO.CategoryRequestDTO;
 import com.citadel.productservice.DTO.CategoryResponseDTO;
 import com.citadel.productservice.Repo.CategoryRepo;
 import com.citadel.productservice.model.Category;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
+
 import java.util.stream.Collectors;
 
 @Service
@@ -17,6 +19,8 @@ public class CategoryService {
     @Autowired
     CategoryRepo categoryRepo;
 
+    @Transactional
+    @PreAuthorize("hasAnyRole('SELLER','ADMIN')")
     public CategoryResponseDTO addCategory(CategoryRequestDTO requestDTO){
             Category newCategory = new Category();
             if(requestDTO.getName()==null) {
@@ -31,7 +35,7 @@ public class CategoryService {
             return convertToResponseDTO(newCategory);
     }
 
-    public CategoryResponseDTO convertToResponseDTO(Category category){
+    private CategoryResponseDTO convertToResponseDTO(Category category){
         if(category==null) return null;
         CategoryResponseDTO responseDTO = new CategoryResponseDTO();
         responseDTO.setId(category.getId());

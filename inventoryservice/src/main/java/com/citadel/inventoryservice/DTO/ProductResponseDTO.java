@@ -1,4 +1,4 @@
-package com.citadel.productservice.DTO;
+package com.citadel.inventoryservice.DTO;
 
 import java.math.BigDecimal;
 import java.util.List;

@@ -40,6 +40,9 @@ public class Product {
     private Category category;
 
     @Column(nullable = false)
+    private String creatorEmail;
+
+    @Column(nullable = false)
     @ColumnDefault("true")
     private boolean isActive = true;
 
@@ -112,6 +115,14 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String getCreatorEmail() {
+        return creatorEmail;
+    }
+
+    public void setCreatorEmail(String creatorEmail) {
+        this.creatorEmail = creatorEmail;
     }
 
     public boolean isActive() {

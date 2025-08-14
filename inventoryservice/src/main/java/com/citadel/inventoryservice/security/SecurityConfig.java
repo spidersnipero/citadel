@@ -1,4 +1,4 @@
-package com.citadel.productservice.security;
+package com.citadel.inventoryservice.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

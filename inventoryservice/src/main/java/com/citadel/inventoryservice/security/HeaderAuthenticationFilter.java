@@ -1,4 +1,4 @@
-package com.citadel.productservice.security;
+package com.citadel.inventoryservice.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -31,7 +31,6 @@ public class HeaderAuthenticationFilter extends OncePerRequestFilter {
         String email = request.getHeader("X-User-Email");
         String rolesHeader = request.getHeader("X-User-Roles");
         logger.info(rolesHeader);
-
 
 
         if (email != null && rolesHeader != null) {
