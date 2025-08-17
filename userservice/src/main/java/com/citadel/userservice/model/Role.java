@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @NoArgsConstructor
 @Entity
@@ -11,7 +13,7 @@ public class Role {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private UUID id;
 
     @Enumerated(EnumType.STRING)
     @Column(unique = true,nullable =false)

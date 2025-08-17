@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Set;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +16,7 @@ public class Users {
 
     @Id
     @GeneratedValue
-    private long id;
+    private UUID id;
 
     @Email(message = "email should be format of email")
     @NotBlank(message = "email should not be null")

@@ -19,7 +19,7 @@ public class InventoryService {
     private InventoryRepo inventoryRepo;
 
     @Autowired
-    private ProductProxy proxy;
+    private ProductProxy productProxy;
 
     @Transactional
     @PreAuthorize("hasRole('ADMIN') or @inventorySecurity.isOwner(authentication, #sku)")
@@ -41,7 +41,7 @@ public class InventoryService {
     @Transactional
     @PreAuthorize("hasRole('ADMIN') or @inventorySecurity.isOwner(authentication, #sku)")
     public ProductResponseDTO getProductBySku(String sku){
-        return proxy.getProductBySku(sku);
+        return productProxy.getProductBySku(sku);
     }
 
 

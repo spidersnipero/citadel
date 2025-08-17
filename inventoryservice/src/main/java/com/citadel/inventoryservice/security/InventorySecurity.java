@@ -11,11 +11,11 @@ import org.springframework.stereotype.Component;
 public class InventorySecurity {
 
     @Autowired
-    private ProductProxy proxy;
+    private ProductProxy productProxy;
 
     public boolean isOwner(Authentication authentication, String  sku){
         String currentUserEmail = authentication.getName();
-        ProductResponseDTO productItem = proxy.getProductBySku(sku);
+        ProductResponseDTO productItem = productProxy.getProductBySku(sku);
         return productItem.getCreatorEmail().equals(authentication.getName());
     }
 

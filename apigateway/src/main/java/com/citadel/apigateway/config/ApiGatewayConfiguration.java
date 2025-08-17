@@ -18,6 +18,8 @@ public class ApiGatewayConfiguration {
 						.uri("lb://productservice"))
 				.route("inventory-service", r -> r.path("/inventory/**")
 						.uri("lb://inventoryservice"))
+				.route("cart-service", r -> r.path("/cart/**")
+						.uri("lb://cartservice"))
 				.build();
 	}
 }
