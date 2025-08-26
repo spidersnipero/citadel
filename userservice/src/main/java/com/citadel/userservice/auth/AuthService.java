@@ -1,13 +1,12 @@
 package com.citadel.userservice.auth;
 
-import com.citadel.userservice.auth.DTO.AuthRequest;
-import com.citadel.userservice.auth.DTO.AuthResponse;
+import com.citadel.userservice.DTO.AuthRequestDTO;
+import com.citadel.userservice.DTO.AuthResponseDTO;
 import com.citadel.userservice.model.Role;
 import com.citadel.userservice.model.RoleName;
 import com.citadel.userservice.model.Users;
 import com.citadel.userservice.repository.RoleRepo;
 import com.citadel.userservice.repository.UsersRepo;
-import jakarta.validation.Valid;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -45,7 +44,7 @@ public class AuthService {
             this.roleRepo = roleRepo;
     }
 
-    public String registerUser( AuthRequest user){
+    public String registerUser( AuthRequestDTO user){
         if(usersRepo.existsByEmail(user.getEmail())) {
             throw new RuntimeException("User already exist");
         }
@@ -68,23 +67,23 @@ public class AuthService {
     }
 
 
-    public AuthResponse authenticate(AuthRequest request){
+    public AuthResponseDTO authenticate(AuthRequestDTO request){
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()));
         UserDetails user = customUserDetailsService.loadUserByEmail(request.getEmail());
         String accessToken = jwtService.generateToken(user);
         String refreshToken = jwtService.generateRefreshToken(user);
-        return new AuthResponse(accessToken,refreshToken);
+        return new AuthResponseDTO(accessToken,refreshToken);
     }
 
-    public AuthResponse refreshToken(String refreshToken){
+    public AuthResponseDTO refreshToken(String refreshToken){
         String email = jwtService.extractUserName(refreshToken);
         UserDetails user = customUserDetailsService.loadUserByEmail(email);
         if(!jwtService.isTokenValid(refreshToken,user)){
             throw new RuntimeException("Invalid refresh token");
         }
         String newAccessToken = jwtService.generateToken(user);
-        return new AuthResponse(newAccessToken,refreshToken);
+        return new AuthResponseDTO(newAccessToken,refreshToken);
     }
 
 

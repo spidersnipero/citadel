@@ -1,11 +1,11 @@
-package com.citadel.userservice.auth.DTO;
+package com.citadel.userservice.DTO;
 
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class AuthRequest {
+public class AuthRequestDTO {
     private String email;
     private String password;
     private String name;

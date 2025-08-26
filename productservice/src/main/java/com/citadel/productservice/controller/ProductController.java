@@ -28,7 +28,7 @@ public class ProductController {
         return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<ProductResponseDTO> createProduct(@Valid @RequestBody ProductRequestDTO requestDTO, Authentication authentication){
         String creatorEmail = authentication.getName();
         ProductResponseDTO newProduct = productService.createProduct(requestDTO,creatorEmail);

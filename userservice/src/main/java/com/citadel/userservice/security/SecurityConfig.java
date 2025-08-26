@@ -1,4 +1,4 @@
-package com.citadel.userservice.config;
+package com.citadel.userservice.security;
 
 import com.citadel.userservice.auth.CustomAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +12,19 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     private final CustomAuthenticationProvider customAuthenticationProvider;
+    private final HeaderAuthenticationFilter headerAuthenticationFilter;
 
     @Autowired
-    public SecurityConfig(CustomAuthenticationProvider customAuthenticationProvider){
+    public SecurityConfig(CustomAuthenticationProvider customAuthenticationProvider,HeaderAuthenticationFilter headerAuthenticationFilter){
         this.customAuthenticationProvider = customAuthenticationProvider;
+        this.headerAuthenticationFilter =headerAuthenticationFilter;
 
     }
 
@@ -33,10 +36,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain (HttpSecurity http)throws Exception{
         return http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(request -> request.requestMatchers("/auth/**").permitAll()
-                        .anyRequest().authenticated())
+                .authorizeHttpRequests(auth -> auth
+                        .anyRequest().permitAll())
                 .authenticationProvider(customAuthenticationProvider)
-                .httpBasic(Customizer.withDefaults())
+                .addFilterBefore(headerAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .build();
     }

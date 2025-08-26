@@ -18,7 +18,7 @@ public class InventoryController {
     private InventoryService inventoryService;
 
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<Void> addInventory(@Valid @RequestBody InventoryDTO inventory){
         inventoryService.addInventory(inventory,inventory.getSku());
         return new ResponseEntity<>(HttpStatus.OK);

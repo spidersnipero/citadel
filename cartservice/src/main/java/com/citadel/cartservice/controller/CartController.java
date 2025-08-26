@@ -27,7 +27,7 @@ public class CartController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<CartResponseDTO> getCart(Authentication authentication){
         CartResponseDTO cartResponseDTO = cartService.getCart(authentication);
         return new ResponseEntity<>(cartResponseDTO,HttpStatus.OK);

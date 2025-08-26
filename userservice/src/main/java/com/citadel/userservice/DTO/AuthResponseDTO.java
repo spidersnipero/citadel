@@ -1,15 +1,15 @@
-package com.citadel.userservice.auth.DTO;
+package com.citadel.userservice.DTO;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class AuthResponse {
+public class AuthResponseDTO {
     private String accessToken;
     private String refreshToken;
 
-    public AuthResponse(String accessToken, String refreshToken) {
+    public AuthResponseDTO(String accessToken, String refreshToken) {
         this.accessToken = accessToken;
         this.refreshToken  = refreshToken;
     }

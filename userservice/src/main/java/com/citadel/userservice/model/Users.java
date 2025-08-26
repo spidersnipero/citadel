@@ -32,10 +32,21 @@ public class Users {
     )
     private Set<Role> roles;
 
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<Address> addresses;
+
     public Users( String email, String name, String password) {
         this.email = email;
         this.name = name;
         this.password = password;
+    }
+
+    public Set<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(Set<Address> addresses) {
+        this.addresses = addresses;
     }
 
     @Override
