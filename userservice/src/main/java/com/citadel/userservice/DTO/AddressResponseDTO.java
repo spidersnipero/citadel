@@ -1,18 +1,37 @@
 package com.citadel.userservice.DTO;
 
+import java.util.UUID;
+
 public class AddressResponseDTO {
+
+
+    private UUID addressId;
+
+
     private String houseNo;
     private String street;
     private String city;
     private String country;
     private String postalCode;
+    private Boolean isDefault;
 
-    public AddressResponseDTO(String houseNo, String street, String city, String country, String postalCode) {
+    public AddressResponseDTO(UUID addressId, String houseNo, String street, String city, String country, String postalCode, Boolean isDefault) {
+        this.addressId = addressId;
         this.houseNo = houseNo;
         this.street = street;
         this.city = city;
         this.country = country;
         this.postalCode = postalCode;
+        this.isDefault = isDefault;
+    }
+
+
+    public UUID getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(UUID addressId) {
+        this.addressId = addressId;
     }
 
     public String getHouseNo() {
@@ -53,5 +72,13 @@ public class AddressResponseDTO {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public Boolean getDefault() {
+        return isDefault;
+    }
+
+    public void setDefault(Boolean aDefault) {
+        isDefault = aDefault;
     }
 }
